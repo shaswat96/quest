@@ -1,0 +1,41 @@
+[
+    {
+        "name": "${app_name}",
+        "image": "${app_docker_image}",
+        "cpu": 0,
+        "portMappings": [
+            {
+                "name": "${app_name}-${port}-tcp",
+                "containerPort": ${port},
+                "hostPort": ${port},
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
+        "essential": true,
+        "environment": [],
+        "environmentFiles": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "secrets": [
+            {
+                "name": "SECRET_WORD",
+                "valueFrom": "${secret_word_arn}"
+            }
+        ],
+        "ulimits": [],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/${app_name}",
+                "mode": "non-blocking",
+                "awslogs-create-group": "true",
+                "max-buffer-size": "25m",
+                "awslogs-region": "${region}",
+                "awslogs-stream-prefix": "ecs"
+            },
+            "secretOptions": []
+        },
+        "systemControls": []
+    }
+]

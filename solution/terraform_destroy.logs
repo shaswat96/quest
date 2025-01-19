@@ -1,0 +1,1100 @@
+kumar.shaswat@TD practice % make tf_destroy
+export APP_IMAGE="public.ecr.aws/XYZ/shaswatpoc:2.0.0" export PROV_OPS=delete export SECRET_WORD=TwelveFactor && bash deploy_script.sh
+CLOUD_PLATFORM: aws
+PROV_OPS: delete
+PROV_COMPONENTID: shaswatpoc-1234
+APP_IMAGE: public.ecr.aws/XYZ/shaswatpoc:2.0.0
+Environment variable APP_IMAGE is set to public.ecr.aws/XYZ/shaswatpoc:2.0.0.
+Start AWS config container
+Checking S3 Bucket state XXXXX-shaswatpoc-terraform ...
+{
+    "BucketRegion": "us-east-1",
+    "AccessPointAlias": false
+}
+S3 bucket XXXXX-shaswatpoc-terraform already exists
+Deprovision  shaswatpoc-1234
+
+Initializing the backend...
+Backend configuration changed!
+
+Terraform has detected that the configuration specified for the backend
+has changed. Terraform will now check for existing state in the backends.
+
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using previously-installed hashicorp/aws v5.69.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+select workspace shaswatpoc-1234
+Bucket: XXXXX-shaswatpoc-terraform
+data.aws_iam_policy_document.this: Reading...
+data.aws_secretsmanager_secret.ssl_key: Reading...
+data.aws_secretsmanager_secret.ssl_cert: Reading...
+aws_secretsmanager_secret.secret_word: Refreshing state... [id=ARN:EXAMPLE]
+aws_vpc.main: Refreshing state... [id=vpc-03af51af48465c614]
+aws_iam_policy.execution_policy: Refreshing state... [id=ARN:EXAMPLE]
+aws_iam_policy.task_policy: Refreshing state... [id=ARN:EXAMPLE]
+aws_ecs_cluster.cluster: Refreshing state... [id=ARN:EXAMPLE]
+data.aws_iam_policy_document.this: Read complete after 0s [id=1077804475]
+data.aws_secretsmanager_secret.ssl_cert: Read complete after 1s [id=ARN:EXAMPLE]
+data.aws_secretsmanager_secret_version.ssl_cert_version: Reading...
+aws_secretsmanager_secret_version.secret_word_version: Refreshing state... [id=ARN:EXAMPLE]
+data.aws_secretsmanager_secret_version.ssl_cert_version: Read complete after 0s [id=ARN:EXAMPLE]
+aws_iam_role.ecs_task_role: Refreshing state... [id=shaswatpoc-task-role]
+data.aws_secretsmanager_secret.ssl_key: Read complete after 1s [id=ARN:EXAMPLE]
+data.aws_secretsmanager_secret_version.ssl_key_version: Reading...
+data.aws_secretsmanager_secret_version.ssl_key_version: Read complete after 1s [id=ARN:EXAMPLE]
+aws_acm_certificate.imported_vault_cert: Refreshing state... [id=ARN:EXAMPLE]
+aws_iam_policy_attachment.task-attach: Refreshing state... [id=shaswatpoc-attachment]
+aws_iam_policy_attachment.exec-attach: Refreshing state... [id=shaswatpoc-attachment]
+aws_ecs_task_definition.shaswatpoc-nodeapp: Refreshing state... [id=shaswatpoc-nodeapp]
+aws_subnet.public_subnet2: Refreshing state... [id=subnet-0e249efe1f0d04b98]
+aws_internet_gateway.igw: Refreshing state... [id=igw-00d5333b545a5dfa6]
+aws_subnet.private_subnet1: Refreshing state... [id=subnet-07a3e319a93b6d84c]
+aws_subnet.public_subnet1: Refreshing state... [id=subnet-06b2e5dad6b446d56]
+aws_lb_target_group.shaswatpoc_tg: Refreshing state... [id=ARN:EXAMPLE]
+aws_security_group.shaswat_sg: Refreshing state... [id=sg-0ad996b761f868824]
+aws_route_table.route: Refreshing state... [id=rtb-088aaa28ff51d5254]
+aws_security_group_rule.shaswat_sg_rule: Refreshing state... [id=sgrule-216183670]
+aws_lb.shaswatpoc_alb: Refreshing state... [id=ARN:EXAMPLE]
+aws_route_table_association.route_association: Refreshing state... [id=rtbassoc-0d9698fda9a49eb2b]
+aws_route_table_association.route_association2: Refreshing state... [id=rtbassoc-09604342d998ad30b]
+aws_ecs_service.shaswatpoc_service: Refreshing state... [id=ARN:EXAMPLE]
+aws_lb_listener.https_listener: Refreshing state... [id=ARN:EXAMPLE]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_acm_certificate.imported_vault_cert will be destroyed
+  - resource "aws_acm_certificate" "imported_vault_cert" {
+      - arn                       = "ARN:EXAMPLE]
+      - certificate_body          = (sensitive value) -> null
+      - domain_name               = "shaswatpoc-nodeapp.local" -> null
+      - domain_validation_options = [] -> null
+      - id                        = "ARN:EXAMPLE]
+      - key_algorithm             = "RSA_2048" -> null
+      - not_after                 = "2035-01-17T12:32:54Z" -> null
+      - not_before                = "2025-01-19T12:32:54Z" -> null
+      - pending_renewal           = false -> null
+      - private_key               = (sensitive value) -> null
+      - renewal_eligibility       = "INELIGIBLE" -> null
+      - renewal_summary           = [] -> null
+      - status                    = "ISSUED" -> null
+      - subject_alternative_names = [
+          - "shaswatpoc-nodeapp.local",
+        ] -> null
+      - tags                      = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                  = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - type                      = "IMPORTED" -> null
+      - validation_emails         = [] -> null
+      - validation_method         = "NONE" -> null
+
+      - options {
+          - certificate_transparency_logging_preference = "DISABLED" -> null
+        }
+    }
+
+  # aws_ecs_cluster.cluster will be destroyed
+  - resource "aws_ecs_cluster" "cluster" {
+      - arn      = "ARN:EXAMPLE]
+      - id       = "ARN:EXAMPLE]
+      - name     = "shaswatpoc-cluster" -> null
+      - tags     = {} -> null
+      - tags_all = {
+          - "shaswatpoc" = "true"
+        } -> null
+
+      - setting {
+          - name  = "containerInsights" -> null
+          - value = "disabled" -> null
+        }
+    }
+
+  # aws_ecs_service.shaswatpoc_service will be destroyed
+  - resource "aws_ecs_service" "shaswatpoc_service" {
+      - cluster                            = "ARN:EXAMPLE]
+      - deployment_maximum_percent         = 200 -> null
+      - deployment_minimum_healthy_percent = 100 -> null
+      - desired_count                      = 1 -> null
+      - enable_ecs_managed_tags            = true -> null
+      - enable_execute_command             = false -> null
+      - health_check_grace_period_seconds  = 0 -> null
+      - iam_role                           = "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS" -> null
+      - id                                 = "ARN:EXAMPLE]
+      - launch_type                        = "FARGATE" -> null
+      - name                               = "shaswatpoc-service" -> null
+      - platform_version                   = "LATEST" -> null
+      - propagate_tags                     = "NONE" -> null
+      - scheduling_strategy                = "REPLICA" -> null
+      - tags                               = {} -> null
+      - tags_all                           = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - task_definition                    = "ARN:EXAMPLE]
+      - triggers                           = {} -> null
+      - wait_for_steady_state              = true -> null
+
+      - deployment_circuit_breaker {
+          - enable   = false -> null
+          - rollback = false -> null
+        }
+
+      - deployment_controller {
+          - type = "ECS" -> null
+        }
+
+      - load_balancer {
+          - container_name   = "shaswatpoc-nodeapp" -> null
+          - container_port   = 3000 -> null
+          - target_group_arn = "ARN:EXAMPLE]
+        }
+
+      - network_configuration {
+          - assign_public_ip = true -> null
+          - security_groups  = [
+              - "sg-0ad996b761f868824",
+            ] -> null
+          - subnets          = [
+              - "subnet-06b2e5dad6b446d56",
+              - "subnet-0e249efe1f0d04b98",
+            ] -> null
+        }
+
+      - timeouts {
+          - create = "4m" -> null
+          - delete = "4m" -> null
+        }
+    }
+
+  # aws_ecs_task_definition.shaswatpoc-nodeapp will be destroyed
+  - resource "aws_ecs_task_definition" "shaswatpoc-nodeapp" {
+      - arn                      = "ARN:EXAMPLE]
+      - arn_without_revision     = "ARN:EXAMPLE]
+      - container_definitions    = jsonencode(
+            [
+              - {
+                  - environment      = []
+                  - environmentFiles = []
+                  - essential        = true
+                  - image            = "public.ecr.aws/XYZ/shaswatpoc:2.0.0"
+                  - logConfiguration = {
+                      - logDriver     = "awslogs"
+                      - options       = {
+                          - awslogs-create-group  = "true"
+                          - awslogs-group         = "/ecs/shaswatpoc-nodeapp"
+                          - awslogs-region        = "us-east-1"
+                          - awslogs-stream-prefix = "ecs"
+                          - max-buffer-size       = "25m"
+                          - mode                  = "non-blocking"
+                        }
+                      - secretOptions = []
+                    }
+                  - mountPoints      = []
+                  - name             = "shaswatpoc-nodeapp"
+                  - portMappings     = [
+                      - {
+                          - appProtocol   = "http"
+                          - containerPort = 3000
+                          - hostPort      = 3000
+                          - name          = "shaswatpoc-nodeapp-3000-tcp"
+                          - protocol      = "tcp"
+                        },
+                    ]
+                  - secrets          = [
+                      - {
+                          - name      = "SECRET_WORD"
+                          - valueFrom = "ARN:EXAMPLE]
+                        },
+                    ]
+                  - systemControls   = []
+                  - ulimits          = []
+                  - volumesFrom      = []
+                },
+            ]
+        ) -> null
+      - cpu                      = "512" -> null
+      - execution_role_arn       = "ARN:EXAMPLE]
+      - family                   = "shaswatpoc-nodeapp" -> null
+      - id                       = "shaswatpoc-nodeapp" -> null
+      - memory                   = "1024" -> null
+      - network_mode             = "awsvpc" -> null
+      - requires_compatibilities = [
+          - "FARGATE",
+        ] -> null
+      - revision                 = 7 -> null
+      - skip_destroy             = false -> null
+      - tags                     = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                 = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - task_role_arn            = "ARN:EXAMPLE]
+      - track_latest             = false -> null
+    }
+
+  # aws_iam_policy.execution_policy will be destroyed
+  - resource "aws_iam_policy" "execution_policy" {
+      - arn              = "ARN:EXAMPLE]
+      - attachment_count = 1 -> null
+      - description      = "ShaswatPOC for ECS Task execution and private registry authentication" -> null
+      - id               = "ARN:EXAMPLE]
+      - name             = "shaswatpoc-ecs-execution-policy" -> null
+      - path             = "/" -> null
+      - policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "logs:CreateLogStream",
+                          - "logs:PutLogEvents",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = "*"
+                      - Sid      = "AllowPushingLogsToCloudwatch"
+                    },
+                  - {
+                      - Action   = [
+                          - "secretsmanager:GetSecretValue",
+                          - "ec2:DescribeInstances",
+                          - "secretsmanager:DescribeSecret",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "ARN:EXAMPLE]
+                        ]
+                      - Sid      = "AllowAccessToSecrets"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - policy_id        = "ANPAULS5QB4OV7HQNA4C2" -> null
+      - tags             = {} -> null
+      - tags_all         = {
+          - "shaswatpoc" = "true"
+        } -> null
+    }
+
+  # aws_iam_policy.task_policy will be destroyed
+  - resource "aws_iam_policy" "task_policy" {
+      - arn              = "ARN:EXAMPLE]
+      - attachment_count = 1 -> null
+      - description      = "IAM Policy for the ShaswatPOC application to access Secrets" -> null
+      - id               = "ARN:EXAMPLE]
+      - name             = "shaswatpoc-ecs-task-policy" -> null
+      - path             = "/" -> null
+      - policy           = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "logs:CreateLogStream",
+                          - "logs:CreateLogGroup",
+                          - "logs:PutLogEvents",
+                          - "logs:DescribeLogStreams",
+                          - "ecs:*",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = "*"
+                    },
+                  - {
+                      - Action   = [
+                          - "kms:Decrypt",
+                          - "secretsmanager:GetSecretValue",
+                          - "secretsmanager:DescribeSecret",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "ARN:EXAMPLE]
+                        ]
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - policy_id        = "ANPAULS5QB4OTJMJIDAWU" -> null
+      - tags             = {} -> null
+      - tags_all         = {
+          - "shaswatpoc" = "true"
+        } -> null
+    }
+
+  # aws_iam_policy_attachment.exec-attach will be destroyed
+  - resource "aws_iam_policy_attachment" "exec-attach" {
+      - groups     = [] -> null
+      - id         = "shaswatpoc-attachment" -> null
+      - name       = "shaswatpoc-attachment" -> null
+      - policy_arn = "ARN:EXAMPLE]
+      - roles      = [
+          - "shaswatpoc-task-role",
+        ] -> null
+      - users      = [] -> null
+    }
+
+  # aws_iam_policy_attachment.task-attach will be destroyed
+  - resource "aws_iam_policy_attachment" "task-attach" {
+      - groups     = [] -> null
+      - id         = "shaswatpoc-attachment" -> null
+      - name       = "shaswatpoc-attachment" -> null
+      - policy_arn = "ARN:EXAMPLE]
+      - roles      = [
+          - "shaswatpoc-task-role",
+        ] -> null
+      - users      = [] -> null
+    }
+
+  # aws_iam_role.ecs_task_role will be destroyed
+  - resource "aws_iam_role" "ecs_task_role" {
+      - arn                   = "ARN:EXAMPLE]
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ecs-tasks.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2025-01-19T12:38:09Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "shaswatpoc-task-role" -> null
+      - managed_policy_arns   = [
+          - "ARN:EXAMPLE]
+          - "ARN:EXAMPLE]
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "shaswatpoc-task-role" -> null
+      - path                  = "/" -> null
+      - permissions_boundary  = "ARN:EXAMPLE]
+      - tags                  = {} -> null
+      - tags_all              = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - unique_id             = "AROAULS5QB4O5KXFCFTH4" -> null
+    }
+
+  # aws_internet_gateway.igw will be destroyed
+  - resource "aws_internet_gateway" "igw" {
+      - arn      = "ARN:EXAMPLE]
+      - id       = "igw-00d5333b545a5dfa6" -> null
+      - owner_id = "XXXXX" -> null
+      - tags     = {
+          - "Name"       = "shaswatpoc-igw"
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all = {
+          - "Name"       = "shaswatpoc-igw"
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id   = "vpc-03af51af48465c614" -> null
+    }
+
+  # aws_lb.shaswatpoc_alb will be destroyed
+  - resource "aws_lb" "shaswatpoc_alb" {
+      - arn                                         = "ARN:EXAMPLE]
+      - arn_suffix                                  = "app/shaswatpoc-alb/dd994985d7781714" -> null
+      - client_keep_alive                           = 3600 -> null
+      - desync_mitigation_mode                      = "defensive" -> null
+      - dns_name                                    = "shaswatpoc-alb-595618819.us-east-1.elb.amazonaws.com" -> null
+      - drop_invalid_header_fields                  = false -> null
+      - enable_cross_zone_load_balancing            = true -> null
+      - enable_deletion_protection                  = false -> null
+      - enable_http2                                = true -> null
+      - enable_tls_version_and_cipher_suite_headers = false -> null
+      - enable_waf_fail_open                        = false -> null
+      - enable_xff_client_port                      = false -> null
+      - id                                          = "ARN:EXAMPLE]
+      - idle_timeout                                = 60 -> null
+      - internal                                    = false -> null
+      - ip_address_type                             = "ipv4" -> null
+      - load_balancer_type                          = "application" -> null
+      - name                                        = "shaswatpoc-alb" -> null
+      - preserve_host_header                        = false -> null
+      - security_groups                             = [
+          - "sg-0ad996b761f868824",
+        ] -> null
+      - subnets                                     = [
+          - "subnet-06b2e5dad6b446d56",
+          - "subnet-0e249efe1f0d04b98",
+        ] -> null
+      - tags                                        = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                                    = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id                                      = "vpc-03af51af48465c614" -> null
+      - xff_header_processing_mode                  = "append" -> null
+      - zone_id                                     = "Z35SXDOTRQ7X7K" -> null
+
+      - access_logs {
+          - enabled = false -> null
+        }
+
+      - connection_logs {
+          - enabled = false -> null
+        }
+
+      - subnet_mapping {
+          - subnet_id = "subnet-06b2e5dad6b446d56" -> null
+        }
+      - subnet_mapping {
+          - subnet_id = "subnet-0e249efe1f0d04b98" -> null
+        }
+    }
+
+  # aws_lb_listener.https_listener will be destroyed
+  - resource "aws_lb_listener" "https_listener" {
+      - arn               = "ARN:EXAMPLE]
+      - certificate_arn   = "ARN:EXAMPLE]
+      - id                = "ARN:EXAMPLE]
+      - load_balancer_arn = "ARN:EXAMPLE]
+      - port              = 443 -> null
+      - protocol          = "HTTPS" -> null
+      - ssl_policy        = "ELBSecurityPolicy-TLS13-1-3-2021-06" -> null
+      - tags              = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all          = {
+          - "shaswatpoc" = "true"
+        } -> null
+
+      - default_action {
+          - order            = 1 -> null
+          - target_group_arn = "ARN:EXAMPLE]
+          - type             = "forward" -> null
+        }
+
+      - mutual_authentication {
+          - ignore_client_certificate_expiry = false -> null
+          - mode                             = "off" -> null
+        }
+    }
+
+  # aws_lb_target_group.shaswatpoc_tg will be destroyed
+  - resource "aws_lb_target_group" "shaswatpoc_tg" {
+      - arn                                = "ARN:EXAMPLE]
+      - arn_suffix                         = "targetgroup/shaswatpoc-nodeapp-tg/eca1d14ec5c3be9a" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "ARN:EXAMPLE]
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [
+          - "ARN:EXAMPLE]
+        ] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "shaswatpoc-nodeapp-tg" -> null
+      - port                               = 3000 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                           = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - target_type                        = "ip" -> null
+      - vpc_id                             = "vpc-03af51af48465c614" -> null
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 5 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 2 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_route_table.route will be destroyed
+  - resource "aws_route_table" "route" {
+      - arn              = "ARN:EXAMPLE]
+      - id               = "rtb-088aaa28ff51d5254" -> null
+      - owner_id         = "XXXXX" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - carrier_gateway_id         = ""
+              - cidr_block                 = "0.0.0.0/0"
+              - core_network_arn           = ""
+              - destination_prefix_list_id = ""
+              - egress_only_gateway_id     = ""
+              - gateway_id                 = "igw-00d5333b545a5dfa6"
+              - ipv6_cidr_block            = ""
+              - local_gateway_id           = ""
+              - nat_gateway_id             = ""
+              - network_interface_id       = ""
+              - transit_gateway_id         = ""
+              - vpc_endpoint_id            = ""
+              - vpc_peering_connection_id  = ""
+            },
+        ] -> null
+      - tags             = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all         = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id           = "vpc-03af51af48465c614" -> null
+    }
+
+  # aws_route_table_association.route_association will be destroyed
+  - resource "aws_route_table_association" "route_association" {
+      - id             = "rtbassoc-0d9698fda9a49eb2b" -> null
+      - route_table_id = "rtb-088aaa28ff51d5254" -> null
+      - subnet_id      = "subnet-06b2e5dad6b446d56" -> null
+    }
+
+  # aws_route_table_association.route_association2 will be destroyed
+  - resource "aws_route_table_association" "route_association2" {
+      - id             = "rtbassoc-09604342d998ad30b" -> null
+      - route_table_id = "rtb-088aaa28ff51d5254" -> null
+      - subnet_id      = "subnet-0e249efe1f0d04b98" -> null
+    }
+
+  # aws_secretsmanager_secret.secret_word will be destroyed
+  - resource "aws_secretsmanager_secret" "secret_word" {
+      - arn                            = "ARN:EXAMPLE]
+      - force_overwrite_replica_secret = false -> null
+      - id                             = "ARN:EXAMPLE]
+      - name                           = "shaswatpoc-secret-word" -> null
+      - recovery_window_in_days        = 0 -> null
+      - tags                           = {} -> null
+      - tags_all                       = {
+          - "shaswatpoc" = "true"
+        } -> null
+    }
+
+  # aws_secretsmanager_secret_version.secret_word_version will be destroyed
+  - resource "aws_secretsmanager_secret_version" "secret_word_version" {
+      - arn            = "ARN:EXAMPLE]
+      - id             = "ARN:EXAMPLE]
+      - secret_id      = "ARN:EXAMPLE]
+      - secret_string  = (sensitive value) -> null
+      - version_id     = "terraform-20250119125915532100000001" -> null
+      - version_stages = [
+          - "AWSCURRENT",
+        ] -> null
+    }
+
+  # aws_security_group.shaswat_sg will be destroyed
+  - resource "aws_security_group" "shaswat_sg" {
+      - arn                    = "ARN:EXAMPLE]
+      - description            = "Security group for ECS task" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Allow Egress traffic for any"
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+            },
+        ] -> null
+      - id                     = "sg-0ad996b761f868824" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "100.64.0.0/16",
+                ]
+              - description      = "VPC services"
+              - from_port        = 3000
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 3000
+            },
+          - {
+              - cidr_blocks      = [
+                  - "49.37.117.223/32",
+                ]
+              - description      = "Allow requsts from private subnet CIDR"
+              - from_port        = 3000
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 3000
+            },
+          - {
+              - cidr_blocks      = [
+                  - "49.37.117.223/32",
+                ]
+              - description      = "Allow requsts from private subnet CIDR"
+              - from_port        = 443
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 443
+            },
+          - {
+              - cidr_blocks      = []
+              - description      = "Allow incoming requests in port 20000 to register with Consul server"
+              - from_port        = 3000
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = true
+              - to_port          = 3000
+            },
+          - {
+              - cidr_blocks      = []
+              - description      = "Allow incoming requests in port 20000 to register with Consul server"
+              - from_port        = 443
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = true
+              - to_port          = 443
+            },
+        ] -> null
+      - name                   = "shaswatpoc-sg" -> null
+      - owner_id               = "XXXXX" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {} -> null
+      - tags_all               = {
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id                 = "vpc-03af51af48465c614" -> null
+    }
+
+  # aws_security_group_rule.shaswat_sg_rule will be destroyed
+  - resource "aws_security_group_rule" "shaswat_sg_rule" {
+      - cidr_blocks            = [
+          - "0.0.0.0/0",
+        ] -> null
+      - description            = "Allow Egress traffic for any" -> null
+      - from_port              = 0 -> null
+      - id                     = "sgrule-216183670" -> null
+      - protocol               = "-1" -> null
+      - security_group_id      = "sg-0ad996b761f868824" -> null
+      - security_group_rule_id = "sgr-019e51d96c65a42cd" -> null
+      - self                   = false -> null
+      - to_port                = 0 -> null
+      - type                   = "egress" -> null
+    }
+
+  # aws_subnet.private_subnet1 will be destroyed
+  - resource "aws_subnet" "private_subnet1" {
+      - arn                                            = "ARN:EXAMPLE]
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1b" -> null
+      - availability_zone_id                           = "use1-az1" -> null
+      - cidr_block                                     = "10.0.0.0/17" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-07a3e319a93b6d84c" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "XXXXX" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name"       = "shaswatpoc-private_subnet1"
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                                       = {
+          - "Name"       = "shaswatpoc-private_subnet1"
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id                                         = "vpc-03af51af48465c614" -> null
+    }
+
+  # aws_subnet.public_subnet1 will be destroyed
+  - resource "aws_subnet" "public_subnet1" {
+      - arn                                            = "ARN:EXAMPLE]
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1a" -> null
+      - availability_zone_id                           = "use1-az6" -> null
+      - cidr_block                                     = "10.0.128.0/18" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-06b2e5dad6b446d56" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "XXXXX" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name"       = "shaswatpoc-public_subnet1"
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                                       = {
+          - "Name"       = "shaswatpoc-public_subnet1"
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id                                         = "vpc-03af51af48465c614" -> null
+    }
+
+  # aws_subnet.public_subnet2 will be destroyed
+  - resource "aws_subnet" "public_subnet2" {
+      - arn                                            = "ARN:EXAMPLE]
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1b" -> null
+      - availability_zone_id                           = "use1-az1" -> null
+      - cidr_block                                     = "10.0.192.0/18" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0e249efe1f0d04b98" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "XXXXX" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name"       = "shaswatpoc-public_subnet2"
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                                       = {
+          - "Name"       = "shaswatpoc-public_subnet2"
+          - "shaswatpoc" = "true"
+        } -> null
+      - vpc_id                                         = "vpc-03af51af48465c614" -> null
+    }
+
+  # aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                                  = "ARN:EXAMPLE]
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.0.0.0/16" -> null
+      - default_network_acl_id               = "acl-081872d0439f86cd9" -> null
+      - default_route_table_id               = "rtb-09f85d08c0676367a" -> null
+      - default_security_group_id            = "sg-03449509c8579e999" -> null
+      - dhcp_options_id                      = "dopt-0a3a6c72603a2ec9f" -> null
+      - enable_dns_hostnames                 = false -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-03af51af48465c614" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-09f85d08c0676367a" -> null
+      - owner_id                             = "XXXXX" -> null
+      - tags                                 = {
+          - "Name"       = "shaswatpoc-vpc"
+          - "shaswatpoc" = "true"
+        } -> null
+      - tags_all                             = {
+          - "Name"       = "shaswatpoc-vpc"
+          - "shaswatpoc" = "true"
+        } -> null
+    }
+
+Plan: 0 to add, 0 to change, 24 to destroy.
+
+Changes to Outputs:
+  - ecs_cluster_arn     = "ARN:EXAMPLE]
+  - ecs_service         = {
+      - alarms                             = []
+      - capacity_provider_strategy         = []
+      - cluster                            = "ARN:EXAMPLE]
+      - deployment_circuit_breaker         = [
+          - {
+              - enable   = false
+              - rollback = false
+            },
+        ]
+      - deployment_controller              = [
+          - {
+              - type = "ECS"
+            },
+        ]
+      - deployment_maximum_percent         = 200
+      - deployment_minimum_healthy_percent = 100
+      - desired_count                      = 1
+      - enable_ecs_managed_tags            = true
+      - enable_execute_command             = false
+      - force_delete                       = null
+      - force_new_deployment               = null
+      - health_check_grace_period_seconds  = 0
+      - iam_role                           = "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
+      - id                                 = "ARN:EXAMPLE]
+      - launch_type                        = "FARGATE"
+      - load_balancer                      = [
+          - {
+              - container_name   = "shaswatpoc-nodeapp"
+              - container_port   = 3000
+              - elb_name         = ""
+              - target_group_arn = "ARN:EXAMPLE]
+            },
+        ]
+      - name                               = "shaswatpoc-service"
+      - network_configuration              = [
+          - {
+              - assign_public_ip = true
+              - security_groups  = [
+                  - "sg-0ad996b761f868824",
+                ]
+              - subnets          = [
+                  - "subnet-06b2e5dad6b446d56",
+                  - "subnet-0e249efe1f0d04b98",
+                ]
+            },
+        ]
+      - ordered_placement_strategy         = []
+      - placement_constraints              = []
+      - platform_version                   = "LATEST"
+      - propagate_tags                     = "NONE"
+      - scheduling_strategy                = "REPLICA"
+      - service_connect_configuration      = []
+      - service_registries                 = []
+      - tags                               = {}
+      - tags_all                           = {
+          - shaswatpoc = "true"
+        }
+      - task_definition                    = "ARN:EXAMPLE]
+      - timeouts                           = {
+          - create = "4m"
+          - delete = "4m"
+          - update = null
+        }
+      - triggers                           = {}
+      - volume_configuration               = []
+      - wait_for_steady_state              = true
+    } -> null
+  - ecs_task_definition = "ARN:EXAMPLE]
+  - loadbalancer        = "shaswatpoc-alb-595618819.us-east-1.elb.amazonaws.com" -> null
+  - targetgroup         = {
+      - arn                                = "ARN:EXAMPLE]
+      - arn_suffix                         = "targetgroup/shaswatpoc-nodeapp-tg/eca1d14ec5c3be9a"
+      - connection_termination             = null
+      - deregistration_delay               = "300"
+      - health_check                       = [
+          - {
+              - enabled             = true
+              - healthy_threshold   = 5
+              - interval            = 30
+              - matcher             = "200"
+              - path                = "/"
+              - port                = "traffic-port"
+              - protocol            = "HTTP"
+              - timeout             = 5
+              - unhealthy_threshold = 2
+            },
+        ]
+      - id                                 = "ARN:EXAMPLE]
+      - ip_address_type                    = "ipv4"
+      - lambda_multi_value_headers_enabled = false
+      - load_balancer_arns                 = [
+          - "ARN:EXAMPLE]
+        ]
+      - load_balancing_algorithm_type      = "round_robin"
+      - load_balancing_anomaly_mitigation  = "off"
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration"
+      - name                               = "shaswatpoc-nodeapp-tg"
+      - name_prefix                        = ""
+      - port                               = 3000
+      - preserve_client_ip                 = null
+      - protocol                           = "HTTP"
+      - protocol_version                   = "HTTP1"
+      - proxy_protocol_v2                  = false
+      - slow_start                         = 0
+      - stickiness                         = [
+          - {
+              - cookie_duration = 86400
+              - cookie_name     = ""
+              - enabled         = false
+              - type            = "lb_cookie"
+            },
+        ]
+      - tags                               = {
+          - shaswatpoc = "true"
+        }
+      - tags_all                           = {
+          - shaswatpoc = "true"
+        }
+      - target_failover                    = [
+          - {
+              - on_deregistration = null
+              - on_unhealthy      = null
+            },
+        ]
+      - target_group_health                = [
+          - {
+              - dns_failover            = [
+                  - {
+                      - minimum_healthy_targets_count      = "1"
+                      - minimum_healthy_targets_percentage = "off"
+                    },
+                ]
+              - unhealthy_state_routing = [
+                  - {
+                      - minimum_healthy_targets_count      = 1
+                      - minimum_healthy_targets_percentage = "off"
+                    },
+                ]
+            },
+        ]
+      - target_health_state                = [
+          - {
+              - enable_unhealthy_connection_termination = null
+              - unhealthy_draining_interval             = null
+            },
+        ]
+      - target_type                        = "ip"
+      - vpc_id                             = "vpc-03af51af48465c614"
+    } -> null
+aws_iam_policy_attachment.exec-attach: Destroying... [id=shaswatpoc-attachment]
+aws_route_table_association.route_association2: Destroying... [id=rtbassoc-09604342d998ad30b]
+aws_route_table_association.route_association: Destroying... [id=rtbassoc-0d9698fda9a49eb2b]
+aws_iam_policy_attachment.task-attach: Destroying... [id=shaswatpoc-attachment]
+aws_security_group_rule.shaswat_sg_rule: Destroying... [id=sgrule-216183670]
+aws_secretsmanager_secret_version.secret_word_version: Destroying... [id=ARN:EXAMPLE]
+aws_subnet.private_subnet1: Destroying... [id=subnet-07a3e319a93b6d84c]
+aws_lb_listener.https_listener: Destroying... [id=ARN:EXAMPLE]
+aws_ecs_service.shaswatpoc_service: Destroying... [id=ARN:EXAMPLE]
+aws_secretsmanager_secret_version.secret_word_version: Destruction complete after 1s
+aws_iam_policy_attachment.exec-attach: Destruction complete after 1s
+aws_iam_policy.execution_policy: Destroying... [id=ARN:EXAMPLE]
+aws_iam_policy_attachment.task-attach: Destruction complete after 1s
+aws_lb_listener.https_listener: Destruction complete after 1s
+aws_acm_certificate.imported_vault_cert: Destroying... [id=ARN:EXAMPLE]
+aws_lb.shaswatpoc_alb: Destroying... [id=ARN:EXAMPLE]
+aws_security_group_rule.shaswat_sg_rule: Destruction complete after 1s
+aws_route_table_association.route_association2: Destruction complete after 1s
+aws_route_table_association.route_association: Destruction complete after 1s
+aws_route_table.route: Destroying... [id=rtb-088aaa28ff51d5254]
+aws_iam_policy.execution_policy: Destruction complete after 1s
+aws_subnet.private_subnet1: Destruction complete after 2s
+aws_route_table.route: Destruction complete after 2s
+aws_internet_gateway.igw: Destroying... [id=igw-00d5333b545a5dfa6]
+aws_lb.shaswatpoc_alb: Destruction complete after 4s
+aws_acm_certificate.imported_vault_cert: Destruction complete after 4s
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 10s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 20s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 30s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 40s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 50s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 1m0s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 1m10s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 1m20s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 1m30s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 1m40s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 1m50s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Still destroying... [id=igw-00d5333b545a5dfa6, 2m0s elapsed]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_internet_gateway.igw: Destruction complete after 2m7s
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_ecs_service.shaswatpoc_service: Still destroying... [id=ARN:EXAMPLE]
+aws_ecs_service.shaswatpoc_service: Destruction complete after 2m40s
+aws_ecs_cluster.cluster: Destroying... [id=ARN:EXAMPLE]
+aws_subnet.public_subnet2: Destroying... [id=subnet-0e249efe1f0d04b98]
+aws_subnet.public_subnet1: Destroying... [id=subnet-06b2e5dad6b446d56]
+aws_ecs_task_definition.shaswatpoc-nodeapp: Destroying... [id=shaswatpoc-nodeapp]
+aws_lb_target_group.shaswatpoc_tg: Destroying... [id=ARN:EXAMPLE]
+aws_security_group.shaswat_sg: Destroying... [id=sg-0ad996b761f868824]
+aws_ecs_task_definition.shaswatpoc-nodeapp: Destruction complete after 1s
+aws_secretsmanager_secret.secret_word: Destroying... [id=ARN:EXAMPLE]
+aws_iam_role.ecs_task_role: Destroying... [id=shaswatpoc-task-role]
+aws_ecs_cluster.cluster: Destruction complete after 1s
+aws_lb_target_group.shaswatpoc_tg: Destruction complete after 2s
+aws_subnet.public_subnet2: Destruction complete after 2s
+aws_subnet.public_subnet1: Destruction complete after 2s
+aws_secretsmanager_secret.secret_word: Destruction complete after 1s
+aws_security_group.shaswat_sg: Destruction complete after 2s
+aws_vpc.main: Destroying... [id=vpc-03af51af48465c614]
+aws_iam_role.ecs_task_role: Destruction complete after 2s
+aws_iam_policy.task_policy: Destroying... [id=ARN:EXAMPLE]
+aws_vpc.main: Destruction complete after 2s
+aws_iam_policy.task_policy: Destruction complete after 1s
+
+Destroy complete! Resources: 24 destroyed.
+{
+    "BucketRegion": "us-east-1",
+    "AccessPointAlias": false
+}
+S3 bucket XXXXX-shaswatpoc-terraform already exists
+
+Managing certs...
+Deleting certs if not there...
+{
+    "ARN": "ARN:EXAMPLE]
+    "Name": "shaswatpoc-key",
+    "DeletionDate": "2025-01-19T18:49:57.275000+05:30"
+}
+{
+    "ARN": "ARN:EXAMPLE]
+    "Name": "shaswatpoc-cert",
+    "DeletionDate": "2025-01-19T18:50:00.308000+05:30"
+}

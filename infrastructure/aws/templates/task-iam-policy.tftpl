@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams",
+                "ecs:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+        ],
+        "Resource": [
+                "arn:aws:secretsmanager:${aws_region}:${aws_account_id}:secret:*"
+            ]
+      }
+    ]
+}

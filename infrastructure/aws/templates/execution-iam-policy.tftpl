@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "AllowPushingLogsToCloudwatch",
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "*"
+      },
+      {
+        "Sid": "AllowAccessToSecrets",
+        "Effect": "Allow",
+        "Action": [
+          "secretsmanager:GetSecretValue",
+          "ec2:DescribeInstances",
+          "secretsmanager:DescribeSecret"
+        ],
+        "Resource": [
+            "arn:aws:secretsmanager:${aws_region}:${aws_account_id}:secret:*"
+        ]
+      }
+    ]
+}
