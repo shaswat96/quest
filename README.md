@@ -36,8 +36,8 @@ Install
 1. Clone this repository to your local machine
 2. Run the below
 ```
-docker build -t quest:latest .
-docker run -p 3000:3000 quest:latest
+docker build -t shaswatpoc:latest .
+docker run -e SECRET_WORD=TwelveFactor -p 3000:3000 shaswatpoc:latest
 ```
 
 Output - 
